@@ -1,78 +1,154 @@
-# Flutter Weather App
+# 🌦️ Flutter Weather App
 
-A production-ready Flutter Weather App built with Clean Architecture, Riverpod state management,
-Hive local caching, and an Offline-First approach.
+A modern Weather Application built with Flutter using Clean Architecture, Riverpod, Dio, Hive, and OpenWeatherMap.
+
+The app provides real-time weather information, location-based forecasts, city search, favorites management, offline support, and a beautiful Dark/Light theme experience.
+
+---
+## 📸 Screenshots
+
+| Dashboard                                                                                                                         | Dashboard                                                                                                                         | Favorites                                                                                                                         | Settings                                                                                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/dashboard1.png" width="220"> | <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/dashboard2.png" width="220"> | <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/favourites.png" width="220"> | <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/settings_lightmode.png" width="220"> |
+
+
+## ✨ Features
+
+### Weather
+
+* 🌤 Current Weather
+* 📍 Weather by Current Location
+* 🔍 Search Weather by City
+* 📅 7-Day Forecast
+* 🌡 Temperature Details
+* 💨 Wind Information
+* 💧 Humidity Information
+* 🌅 Sunrise & Sunset Data
+
+### User Experience
+
+* 🌙 Dark Theme
+* ☀️ Light Theme
+* 💾 Persistent Theme Settings
+* ⭐ Favorite Cities
+* 📶 Network Connectivity Monitoring
+* ⚡ Fast Loading States
+* 🎨 Smooth Animations
+
+### Architecture
+
+* Clean Architecture
+* Repository Pattern
+* Riverpod State Management
+* Dependency Injection
+* Offline Caching with Hive
+* Error Handling
+* Environment Configuration
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| State Management | flutter_riverpod |
-| Local Database | hive + hive_flutter |
-| Networking | dio |
-| Location | geolocator + geocoding |
-| Connectivity | connectivity_plus |
-| Environment | flutter_dotenv |
-| Architecture | Clean Architecture (Feature-First) |
+### State Management
 
----
-
-## Project Structure
-
+```yaml
+flutter_riverpod: ^3.3.1
+riverpod_annotation: ^4.0.2
 ```
+
+### Networking
+
+```yaml
+dio: ^5.9.2
+```
+
+### Local Storage
+
+```yaml
+hive: ^2.2.3
+hive_flutter: ^1.1.0
+```
+
+### Location
+
+```yaml
+geolocator: ^13.0.4
+geocoding: ^4.0.0
+```
+
+### Utilities
+
+```yaml
+connectivity_plus: ^7.1.1
+flutter_dotenv: ^6.0.1
+intl: ^0.20.2
+equatable: ^2.0.8
+```
+
+### UI
+
+```yaml
+cached_network_image: ^3.4.1
+shimmer: ^3.0.0
+lottie: ^3.3.3
+```
+
+### Code Generation
+
+```yaml
+freezed_annotation: ^3.1.0
+json_annotation: ^4.12.0
+```
+
+---
+
+## 🏗️ Project Structure
+
+```text
 lib/
-  core/
-    constants/       # App-wide constants & Hive keys
-    errors/          # Failures, exceptions, Either monad
-    network/         # Dio client with interceptors & retry
-    services/        # Connectivity, Location services
-    storage/         # Hive initialization
-    theme/           # Light & Dark themes
-    utils/           # Weather formatting utilities
-  features/
-    weather/
-      data/
-        datasources/
-          local/     # Hive-based local cache
-          remote/    # WeatherAPI.com via Dio
-        models/      # Hive models + JSON parsing
-        repositories/ # Offline-first WeatherRepositoryImpl
-      domain/
-        entities/    # Pure Dart domain entities
-        repositories/ # Abstract repository contract
-        usecases/    # Business logic use cases
-      presentation/
-        providers/   # Riverpod: notifiers, providers, states
-        screens/     # Home, Search, Favorites, Settings
-        widgets/     # Reusable UI components
+├── core/
+│   ├── constants/
+│   ├── network/
+│   ├── services/
+│   └── utils/
+│
+├── features/
+│   └── weather/
+│       ├── data/
+│       ├── domain/
+│       └── presentation/
+│
+├── shared/
+│
+└── main.dart
 ```
 
 ---
 
-## Setup
+## 🚀 Getting Started
 
-### 1. Get an API key
+### Clone Repository
 
-Sign up at [https://www.weatherapi.com](https://www.weatherapi.com) (free tier works for all features).
-
-### 2. Configure environment
-
-Open `assets/env/.env` and add your API key:
-
-```
-WEATHER_API_KEY=your_actual_api_key_here
-WEATHER_BASE_URL=https://api.weatherapi.com/v1
+```bash
+git clone https://github.com/bvkbbflutter/flutter_weather_app.git
 ```
 
-### 3. Install dependencies
+### Install Packages
 
 ```bash
 flutter pub get
 ```
 
-### 4. Run the app
+### Environment Variables
+
+Create a `.env` file:
+
+```env
+WEATHER_API_KEY=YOUR_API_KEY
+WEATHER_BASE_URL=https://api.openweathermap.org/data/2.5
+```
+
+### Run App
 
 ```bash
 flutter run
@@ -80,72 +156,56 @@ flutter run
 
 ---
 
-## Hive Adapters
+## 🌐 Weather API
 
-Hive TypeAdapters are pre-written (no build_runner needed for adapters).
+Powered by:
 
-If you add new Hive models, run:
-
-```bash
-dart run build_runner build --delete-conflicting-outputs
-```
+https://openweathermap.org/api
 
 ---
 
-## Offline-First Flow
+## 📦 Packages Used
 
-```
-User opens app
-      │
-      ▼
-Check connectivity
-      │
-   ┌──┴──┐
-Online    Offline
-  │           │
-  ▼           ▼
-Fetch API   Return cached data
-  │           │
-  ▼        No cache?
-Cache to     │
-Hive       Show empty state
-  │
-  ▼
-Return fresh data
-```
+* Flutter Riverpod
+* Riverpod Generator
+* Dio
+* Hive
+* Geolocator
+* Geocoding
+* Connectivity Plus
+* Freezed
+* Json Serializable
+* Lottie
+* Cached Network Image
+* Shimmer
 
 ---
 
-## Running Tests
+## 🎯 Highlights
 
-```bash
-flutter test
-```
-
----
-
-## API Reference
-
-This app uses **WeatherAPI.com** (recommended over OpenWeatherMap free tier):
-
-| Endpoint | Used for |
-|---|---|
-| `/current.json` | Current weather |
-| `/forecast.json` | 7-day forecast + hourly |
-| `/search.json` | City search autocomplete |
+* Production-Ready Architecture
+* Dark / Light Theme Support
+* Location-Based Weather
+* Favorites Management
+* Offline Data Storage
+* Clean and Scalable Codebase
 
 ---
 
-## Features
+## 👨‍💻 Author
 
-- Current weather with all stats (humidity, wind, UV, pressure, visibility)
-- 24-hour hourly forecast
-- 7-day daily forecast
-- City search with debounce
-- Favorite cities (persisted in Hive)
-- Current location weather (geolocator)
-- Offline support with Hive cache
-- Offline banner + cache indicator
-- Pull-to-refresh
-- Light/Dark theme toggle (persisted in Hive)
-- Cache management in Settings
+**BVKBB Flutter**
+
+GitHub:
+
+https://github.com/bvkbbflutter
+
+Project Repository:
+
+https://github.com/bvkbbflutter/flutter_weather_app
+
+---
+
+## 📄 License
+
+MIT License
