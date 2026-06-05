@@ -7,10 +7,7 @@ The app provides real-time weather information, location-based forecasts, city s
 ---
 ## 📸 Screenshots
 
-| Dashboard                                                                                                                         | Dashboard                                                                                                                         | Favorites                                                                                                                         | Settings                                                                                                                                  |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/dashboard1.png" width="220"> | <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/dashboard2.png" width="220"> | <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/favourites.png" width="220"> | <img src="https://raw.githubusercontent.com/bvkbbflutter/flutter_weather_app/main/assets/screenshots/settings_lightmode.png" width="220"> |
-
+![Home Screen](assets/screenshots/weather.png)
 
 ## ✨ Features
 
